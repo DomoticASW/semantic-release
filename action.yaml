@@ -13,9 +13,12 @@ runs:
         node-version: "lts/*"
     - name: Install dependencies
       run: npm clean-install
+      shell: bash
     - name: Verify the integrity of provenance attestations and registry signatures for installed dependencies
       run: npm audit signatures
+      shell: bash
     - name: Release
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: npx semantic-release
+      shell: bash
