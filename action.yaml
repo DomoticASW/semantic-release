@@ -4,6 +4,9 @@ inputs:
   github-token:
     description: "Github token for releasing"
     required: true
+  NPM_TOKEN:
+    description: "NPM token token for releasing under domoticasw organization"
+    required: true
 runs:
   using: "composite"
   steps:
@@ -24,5 +27,6 @@ runs:
     - name: Release
       env:
         GITHUB_TOKEN: ${{ inputs.github-token }}
+        NPM_TOKEN: ${{ inputs.NPM_TOKEN }}
       run: npx semantic-release
       shell: bash
