@@ -1,7 +1,7 @@
 name: "semantic-release"
 description: "DomoticASW semantic release"
 inputs:
-  github-token:
+  GITHUB_TOKEN:
     description: "Github token for releasing"
     required: true
   NPM_TOKEN:
@@ -26,7 +26,7 @@ runs:
       shell: bash
     - name: Release
       env:
-        GITHUB_TOKEN: ${{ inputs.github-token }}
+        GITHUB_TOKEN: ${{ inputs.GITHUB_TOKEN }}
         NPM_TOKEN: ${{ inputs.NPM_TOKEN }}
       run: npx semantic-release
       shell: bash
