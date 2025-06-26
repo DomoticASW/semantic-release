@@ -1,6 +1,9 @@
 name: "semantic-release"
 description: "DomoticASW semantic release"
 inputs:
+  PAT:
+    description: "PAT able to bypass branch protection rules for pushing tags"
+    required: true
   GITHUB_TOKEN:
     description: "Github token for releasing"
     required: true
@@ -13,6 +16,7 @@ runs:
     - name: Checkout
       uses: actions/checkout@v4
       with:
+        token: ${{ inputs.PAT }}
         fetch-depth: 0
     - name: Setup Node.js
       uses: actions/setup-node@v4
