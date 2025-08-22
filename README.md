@@ -26,3 +26,10 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
 ```
+
+## Outputs:
+
+If the repository has [semantic-release-export-data](https://github.com/felipecrs/semantic-release-export-data) plugin installed then two outputs are available to be used:
+
+- new-release-published (example: true)
+- new-release-version (example: 1.0.9)

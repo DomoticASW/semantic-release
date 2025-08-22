@@ -10,6 +10,13 @@ inputs:
   NPM_TOKEN:
     description: "NPM token token for releasing under domoticasw organization"
     required: true
+outputs:
+  new-release-published:
+    description: "Whether a new release was published (needs semantic-release-export-data plugin)"
+    value: ${{ steps.release.outputs.new-release-published }}
+  new-release-version:
+    description: "Version of the new release (needs semantic-release-export-data plugin)"
+    value: ${{ steps.release.outputs.new-release-version }}
 runs:
   using: "composite"
   steps:
@@ -29,6 +36,9 @@ runs:
       run: npm audit signatures
       shell: bash
     - name: Release
+      id: release
+      # If the following plugin is installed the previously defined outputs will be populated:
+      # https://github.com/felipecrs/semantic-release-export-data
       env:
         GITHUB_TOKEN: ${{ inputs.GITHUB_TOKEN }}
         NPM_TOKEN: ${{ inputs.NPM_TOKEN }}
